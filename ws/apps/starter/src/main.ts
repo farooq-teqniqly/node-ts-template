@@ -1,21 +1,23 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
-import express from "express";
 import * as path from "path";
+import { readFileSync } from "fs";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { gql } from "graphql-tag";
 
-const app = express();
+const typeDefs = gql(
+  readFileSync(path.resolve("./apps/starter/src/schema.graphql"), {
+    encoding: "utf-8",
+  }),
+);
 
-app.use("/assets", express.static(path.join(__dirname, "assets")));
+async function startApolloServer() {
+  const server = new ApolloServer({ typeDefs });
+  const { url } = await startStandaloneServer(server);
 
-app.get("/api", (req, res) => {
-  res.send({ message: "Welcome to starter!" });
-});
+  console.log(`
+    🚀  Server is running!
+    📭  Query at ${url}
+  `);
+}
 
-const port = process.env.PORT || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on("error", console.error);
+startApolloServer();

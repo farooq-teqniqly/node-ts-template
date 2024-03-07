@@ -1,0 +1,16 @@
+"A curated collection of tracks designed for a specific activity or mood."
+type Playlist {
+  "The playlist ID."
+  id: ID!
+
+  "The playlist name."
+  name: String!
+
+  "Describes the playlist, what to expect, and entices the user to listen."
+  description: String
+}
+
+type Query {
+  "Playlists hand-picked to be featured to all users."
+  playlistsFeatured: [Playlist!]!
+}
