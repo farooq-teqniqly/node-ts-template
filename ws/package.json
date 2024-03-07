@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "generate": "graphql-codegen --config ./libs/graphql-lib/src/codegen.ts",
     "format": "prettier --write \"apps/**/*.{ts,spec.ts,graphql}\""
   },
   "private": true,
@@ -16,6 +17,9 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-resolvers": "^4.0.6",
     "@graphql-tools/mock": "^9.0.2",
     "@graphql-tools/schema": "^10.0.3",
     "@nx/eslint": "18.0.7",

@@ -1,0 +1,8 @@
+{
+  "name": "resolvers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/resolvers/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

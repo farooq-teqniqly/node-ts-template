@@ -1,0 +1,8 @@
+{
+  "name": "graphql-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/graphql-lib/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}
