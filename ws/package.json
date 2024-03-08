@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "generate": "graphql-codegen --config ./libs/graphql-lib/src/codegen.ts && ts-node ./libs/graphql-lib/src/codegen-after.ts && npm run format",
-    "format": "prettier --write \"apps/**/*.{ts,spec.ts,graphql}\""
+    "format": "prettier --write \"apps/**/*.{ts,spec.ts,graphql}\"",
+    "dev": "npm run generate && nx lint starter && nx serve starter"
   },
   "private": true,
   "dependencies": {

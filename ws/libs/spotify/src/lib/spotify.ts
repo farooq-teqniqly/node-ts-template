@@ -10,4 +10,8 @@ export class SpotifyAPI extends RESTDataSource {
     );
     return response?.playlists?.items ?? [];
   }
+
+  async getPlaylist(id: string): Promise<Playlist> {
+    return this.get(`playlists/${id}`);
+  }
 }

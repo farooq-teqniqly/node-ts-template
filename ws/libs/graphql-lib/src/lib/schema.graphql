@@ -13,4 +13,7 @@ type Playlist {
 type Query {
   "Playlists hand-picked to be featured to all users."
   playlistsFeatured: [Playlist!]!
+
+  "Retrieves a specific playlist."
+  playlist(id: ID!): Playlist
 }
