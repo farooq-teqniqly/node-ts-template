@@ -1,13 +1,23 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import path from "path";
 import { gql } from "graphql-tag";
 import { resolvers } from "@ws/resolvers";
 import { SpotifyAPI } from "@ws/spotify";
 
+let schemaPath = path.resolve(__dirname, "../../../libs/graphql-lib/src/lib/schema.graphql");
+
+if (!existsSync(schemaPath)) {
+  schemaPath = path.resolve(__dirname, "schema.graphql");
+}
+
+if (!existsSync(schemaPath)) {
+  throw `GraphQL schema not found at ${schemaPath}`;
+}
+
 const typeDefs = gql(
-  readFileSync(path.resolve(__dirname, "../../../libs/graphql-lib/src/lib/schema.graphql"), {
+  readFileSync(schemaPath, {
     encoding: "utf-8",
   }),
 );

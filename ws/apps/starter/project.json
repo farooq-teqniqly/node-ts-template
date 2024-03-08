@@ -18,6 +18,10 @@
           "buildTarget": "starter:build:production"
         }
       }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/starter/Dockerfile . -t starter"
     }
   },
   "tags": []
