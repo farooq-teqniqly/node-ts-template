@@ -7,6 +7,10 @@ const config: CodegenConfig = {
       plugins: ["typescript", "typescript-resolvers"],
       config: {
         contextType: "./libs/resolvers/src/lib/context#DataSourceContext",
+        mappers: {
+          Playlist: "./libs/graphql-lib/src/lib/models#PlaylistModel",
+          Track: "./libs/graphql-lib/src/lib/models#TrackModel",
+        },
       },
     },
   },
