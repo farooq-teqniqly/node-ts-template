@@ -22,9 +22,15 @@ const typeDefs = gql(
   }),
 );
 
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 4000;
+
 export async function startApolloServer() {
-  const server = new ApolloServer({ typeDefs, resolvers });
-  const { url } = await startStandaloneServer(server, {
+  const server = new ApolloServer<{ dataSources: { spotifyAPI: SpotifyAPI } }>({
+    typeDefs,
+    resolvers,
+  });
+  const { url } = await startStandaloneServer<{ dataSources: { spotifyAPI: SpotifyAPI } }>(server, {
+    listen: { port: port },
     context: async () => {
       const { cache } = server;
       return {
@@ -34,6 +40,7 @@ export async function startApolloServer() {
       };
     },
   });
+
   console.log(`
     🚀  Server is running
     📭  Query at ${url}

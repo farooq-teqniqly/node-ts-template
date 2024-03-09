@@ -5,7 +5,9 @@
   "scripts": {
     "generate": "graphql-codegen --config ./libs/graphql-lib/src/codegen.ts && ts-node ./libs/graphql-lib/src/codegen-after.ts && npm run format",
     "format": "prettier --write \"apps/**/*.{ts,spec.ts,graphql}\"",
-    "dev": "npm run generate && nx lint starter && nx serve starter"
+    "dev": "npm run generate && nx lint starter && nx serve starter",
+    "e2e": "npm run docker-build && docker run -e PORT=6000 -p 6000:6000 -d --name graphql-spotify-api-e2e graphql-spotify-api:latest && nx e2e starter-e2e && docker rm graphql-spotify-api-e2e -f",
+    "docker-build": "docker build -f Dockerfile.starter . -t graphql-spotify-api"
   },
   "private": true,
   "dependencies": {
